@@ -1,5 +1,5 @@
-def main():
-    print(
+def menu():
+    menu_user_input = input(
         "Please, select one of the options below:\n"
         "1 - AI guess the number\n"
         "2 - Player guess the number\n"
@@ -9,5 +9,8 @@ def main():
         "Input value: "
     )
 
+    return menu_user_input
 
-main()
+
+if __name__ == "__main__":
+    menu()

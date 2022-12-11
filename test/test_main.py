@@ -1,12 +1,15 @@
-from main import main
+from unittest.mock import patch
+from main import menu
 
 
-def test_menu_print_options(capsys):
+def test_analyzer_menu_basic(capsys):
+    def fake_input(prompt=""):
+        print(prompt, end=" ")
+        return ""
 
-    main()
-
-    caps = capsys.readouterr()
-
+    with patch("builtins.input", fake_input):
+        menu()
+    out, _ = capsys.readouterr()
     assert (
         "Please, select one of the options below:\n"
         "1 - AI guess the number\n"
@@ -14,5 +17,6 @@ def test_menu_print_options(capsys):
         "3 - Player X AI\n"
         "4 - Player X Player\n"
         "0 - Leave\n"
-        "Input value: \n"
-    ) == caps.out
+        "Input value: "
+        in out
+    )
